@@ -1,1 +1,0 @@
-# qgymib.github.io
