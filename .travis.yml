@@ -5,7 +5,7 @@ branches:
   - develop
 cache:
   directories:
-  - node_modules
+  - .deploy_git
 before_install:
 - npm install -g hexo-cli
 - openssl aes-256-cbc -K $encrypted_6d0a0a8f6120_key -iv $encrypted_6d0a0a8f6120_iv
