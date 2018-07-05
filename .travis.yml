@@ -3,9 +3,6 @@ node_js: stable
 branches:
   only:
   - develop
-cache:
-  directories:
-  - .deploy_git
 before_install:
 - npm install -g hexo-cli
 - openssl aes-256-cbc -K $encrypted_6d0a0a8f6120_key -iv $encrypted_6d0a0a8f6120_iv
@@ -14,9 +11,8 @@ before_install:
 - git config --global user.name "qgymib"
 - git config --global user.email "qgymib@gmail.com"
 install:
-- git submodule init
-- git submodule update
 - npm install
+- git clone -b master git@github.com:qgymib/qgymib.github.io.git .deploy_git
 script:
 - hexo clean
 - hexo generate
