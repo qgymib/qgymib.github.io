@@ -90,3 +90,6 @@ theme_config:
     medium: /favicon-32x32.png
     apple_touch_icon: /favicon-180x180.png
     safari_pinned_tab: /favicon-512x512.svg
+  local_search:
+    enable: true
+    unescape: true
