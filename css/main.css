@@ -648,8 +648,11 @@ pre .keyword,
 pre .javascript .function {
   color: #8959a8;
 }
-.posts-expand .post-body img.full-image {
+.full-image.full-image.full-image.full-image {
   border: none;
+  max-width: 100%;
+  width: auto;
+  margin: 20px auto 25px;
 }
 .blockquote-center,
 .page-home .post-type-quote blockquote,
@@ -1833,7 +1836,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #580a46;
+  background: #910d83;
 }
 .links-of-blogroll {
   font-size: 13px;
