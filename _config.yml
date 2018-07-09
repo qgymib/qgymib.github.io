@@ -84,6 +84,7 @@ deploy:
   name: qgymib
   email: qgymib@gmail.com
 
+# Theme
 theme_config:
   favicon:
     small: /favicon-16x16.png
@@ -93,3 +94,12 @@ theme_config:
   local_search:
     enable: true
     unescape: true
+  footer:
+    since: 2018
+
+# RSS
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
