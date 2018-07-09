@@ -17,7 +17,7 @@ script:
 - hexo clean
 - hexo generate
 after_success:
-- hexo deploy
+- hexo deploy -m $TRAVIS_COMMIT
 addons:
   ssh_known_hosts:
   - github.com
