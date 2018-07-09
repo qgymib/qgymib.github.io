@@ -17,7 +17,7 @@ script:
 - hexo clean
 - hexo generate
 after_success:
-- hexo deploy -m "$TRAVIS_COMMIT_MESSAGE"
+- hexo deploy -m "$TRAVIS_COMMIT: $TRAVIS_COMMIT_MESSAGE"
 addons:
   ssh_known_hosts:
   - github.com
