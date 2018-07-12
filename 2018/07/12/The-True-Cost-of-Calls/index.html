@@ -108,17 +108,18 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="与其他语言相比(诸如C)，虚拟函数的成本通常被认为是导致C++性能不佳的一个原因。这个理论在90年代是正确的，但是在过去的十几年里，编译器逐渐智能化。现代化的编译器生成的代码及其高效。 然而无论编译器如何智能，函数调用总是存在，因此其开销也一定存在。本文试图阐明函数调用的成本。 函数调用的成本，无论它们是何种形式，都不是由调用本身（获取地址跳转到跳转）来控制，而是由调用周围的其他所有内容控制，比如">
+<meta name="keywords" content="C&#x2F;C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://wiki.crossdark.com/2018/07/09/hello-world/index.html">
+<meta property="og:title" content="函数调用的真正开销">
+<meta property="og:url" content="http://wiki.crossdark.com/2018/07/12/The-True-Cost-of-Calls/index.html">
 <meta property="og:site_name" content="Wiki">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="与其他语言相比(诸如C)，虚拟函数的成本通常被认为是导致C++性能不佳的一个原因。这个理论在90年代是正确的，但是在过去的十几年里，编译器逐渐智能化。现代化的编译器生成的代码及其高效。 然而无论编译器如何智能，函数调用总是存在，因此其开销也一定存在。本文试图阐明函数调用的成本。 函数调用的成本，无论它们是何种形式，都不是由调用本身（获取地址跳转到跳转）来控制，而是由调用周围的其他所有内容控制，比如">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-09T18:12:05.420Z">
+<meta property="og:updated_time" content="2018-07-12T17:25:09.561Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="函数调用的真正开销">
+<meta name="twitter:description" content="与其他语言相比(诸如C)，虚拟函数的成本通常被认为是导致C++性能不佳的一个原因。这个理论在90年代是正确的，但是在过去的十几年里，编译器逐渐智能化。现代化的编译器生成的代码及其高效。 然而无论编译器如何智能，函数调用总是存在，因此其开销也一定存在。本文试图阐明函数调用的成本。 函数调用的成本，无论它们是何种形式，都不是由调用本身（获取地址跳转到跳转）来控制，而是由调用周围的其他所有内容控制，比如">
 
 
   
@@ -129,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://wiki.crossdark.com/2018/07/09/hello-world/"/>
+  <link rel="canonical" href="http://wiki.crossdark.com/2018/07/12/The-True-Cost-of-Calls/"/>
 
 
 
@@ -139,7 +140,7 @@
   };
 </script>
 
-  <title>Hello World | Wiki</title>
+  <title>函数调用的真正开销 | Wiki</title>
   
 
 
@@ -315,7 +316,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wiki.crossdark.com/2018/07/09/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://wiki.crossdark.com/2018/07/12/The-True-Cost-of-Calls/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gaoyuan Qiu">
@@ -332,7 +333,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">函数调用的真正开销
               
             
           </h1>
@@ -357,9 +358,13 @@
                 
               
 
-              <time title="创建时间：2018-07-10 02:12:05" itemprop="dateCreated datePublished" datetime="2018-07-10T02:12:05+08:00">2018-07-10</time>
+              <time title="创建时间：2018-07-13 01:22:04 / 修改时间：01:25:09" itemprop="dateCreated datePublished" datetime="2018-07-13T01:22:04+08:00">2018-07-13</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -391,15 +396,52 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>与其他语言相比(诸如C)，虚拟函数的成本通常被认为是导致C++性能不佳的一个原因。这个理论在90年代是正确的，但是在过去的十几年里，编译器逐渐智能化。现代化的编译器生成的代码及其高效。</p>
+<p>然而无论编译器如何智能，函数调用总是存在，因此其开销也一定存在。本文试图阐明函数调用的成本。</p>
+<p>函数调用的成本，无论它们是何种形式，都不是由调用本身（获取地址跳转到跳转）来控制，而是由调用周围的其他所有内容控制，比如堆栈设置和参数传递。让我们通过查看C和C++中可用的调用类型，它们如何转换为机器代码，以及它们相对于彼此的速度或速度有多快来分析其调用成本。</p>
+<h2 id="函数调用方法"><a href="#函数调用方法" class="headerlink" title="函数调用方法"></a>函数调用方法</h2><p>C和C++提供如下调用方法：</p>
+<ul>
+<li><strong>直接调用</strong>。这是最通常的函数调用，其函数地址在编译时已知或在链接时计算得出。在任何一种情况下，地址在运行时在代码中是固定的。函数调用本身将包括堆栈设置（后文再行阐述）和对常量的调用。</li>
+<li><strong>间接调用</strong>。这通常称为函数指针调用，其中函数的地址在编译时是未知的，但保存在一个变量中，该变量可以在运行时由程序修改，例如回调和面向对象的编程。函数指针广泛的用于许多设计模式，例如访问者，观察者或仅仅进行事件处理。</li>
+<li><strong>内联调用</strong>。inline是一个编译器指令，用于指示编译器通过将函数体放在调用点来消除函数调用。通过这样做，编译器消除了设置堆栈和进行调用的开销，但代价是代码扩展。编译器将内联作为提示，因为它将应用启发式方法来确定内联函数是否会导致性能提升。如果编译器估计正增益，则函数内联，如果编译器估计负增益，则函数被正常调用。这确实是编译器应该做的标准（C ++ ISO 14882：1998§7.1.2）。在C和C++中，内联还修改了函数的存储语义，防止内联修改的函数具有外部存储（C99，ISO 9899：1999§6.7.4）。但是，编译器可以自由地实例化内联函数的隐藏副本以进行正常调用。<br>基本上，编译器使用关键字内联执行它想要的操作，将其视为寄存器，优化提示，仅此而已。但是，当您使用适当的优化开关时，编译器相当智能，它们可能很好地内联您要求的功能，甚至其他功能。通常，具有一个或两个参数且只有两行或三行代码的函数将自动内联。</li>
+<li><strong>虚函数调用</strong>。在面向对象编程中，继承和多态保证使用间接函数调用，以便即使将给定对象作为基类型（具有is-a关系）进行操作，也会调用正确的函数。虚函数确保为实际对象类型调用正确的函数，而不管它是什么类型的操作，大大简化了代码并有助于确保正确性。<br>实现可能因语言而异，但在C++中，对于每个具有虚函数的对象，都有一个隐藏指针，指向为该类创建的表，VMT，即保存函数指针的虚方法表。每次在对象上调用虚方法（方法是面向对象的“成员函数”术语）时，都会从表中检索函数的地址。这显然只是间接调用的一种特殊情况，只是隐藏了函数指针，编译器生成了所有必要的代码和存储，以便透明地操作它们。特别是，编译器生成代码以在调用对象的构造函数时填充表。</li>
+</ul>
+<h2 id="函数调用的机制"><a href="#函数调用的机制" class="headerlink" title="函数调用的机制"></a>函数调用的机制</h2><p>尽管从处理器到处理器以及从编译器到编译器，特定程度可能有所不同，但调用的执行方式大致相同，因为C和C++强制执行特定类型的堆栈管理。在C和C++中，堆栈管理在调用者（Caller）和被调用者（Callee）之间分配。</p>
+<p>调用者以相反的顺序推送堆栈上的参数，然后执行调用。调用指令将当前指令地址压入堆栈，该地址将成为返回地址，代码将在函数调用返回时继续执行。返回时，调用者的任务是通过弹出（取消堆叠）参数来清理堆栈。</p>
+<p>被调用者将设置自己的堆栈环境，确保堆栈在退出时被恢复，以便在堆栈顶部找到返回地址，允许代码正常恢复，返回给调用者。被调用者只会在自己的框架中修改堆栈，使用它来存储其局部变量。</p>
+<p>堆栈操作由一组专用指令支持，这些指令根据处理器而有所不同，但它们基本上提供推送，弹出和清理（一种简单的丢弃推送数据的大量弹出）。调用指令基本上是一个push-jump指令，其中当前地址（或下一条指令的地址）在跳转到指定地址之前被压入堆栈。因此，返回指令是弹出跳转指令，其中在跳转到检索到的地址之前从堆栈顶部（弹出）检索目标地址。</p>
+<p>因此，为了执行调用，调用者在调用函数之前评估参数并在堆栈上以相反的顺序推送结果值。该函数创建自己的本地存储，访问参数，清理其本地存储，返回。然后调用者清除堆栈中的参数，并继续执行程序。</p>
+<p>您可能会问自己为什么调用者必须以相反的顺序推送参数。好吧，原因是C（和C++）允许使用可变参数，例如printf，并且用于将无限数量的参数传递给函数。printf的原型是：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printf</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *format, ...)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>只有第一个参数的位置必须知道。推到最后，这意味着它是一个已知的位置，即堆栈的顶部（位于返回地址之下）。</p>
+<h2 id="函数调用开销"><a href="#函数调用开销" class="headerlink" title="函数调用开销"></a>函数调用开销</h2><p>函数调用的成本本身并不高：</p>
+<ul>
+<li><p><strong>直接调用</strong>。如果地址在编译时是已知的，则该调用仅仅是在指令中嵌入的已知地址处直接跳转的推送。产生的惩罚是特定于处理器的：它是否破坏地址预测，刷新管道，跳转到代码不在缓存中的地址等，但这些处罚适用于所有类型的呼叫。</p>
+</li>
+<li><p><strong>间接调用</strong>，如果呼叫是间接的，我们会增加从内存位置获取地址的额外成本。显然，使用简单的函数指针不会比从内存中添加单个读取更多的成本。通常，函数调用如</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fonction_ptr(arg1,arg2);</span><br></pre></td></tr></table></figure>
+<p>将转换为此x86代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push arg2</span><br><span class="line">push arg1</span><br><span class="line">call function_ptr // loads the value from</span><br><span class="line">                // memory location</span><br></pre></td></tr></table></figure>
+<p>其中function_ptr可以扩展为复杂的地址生成指令，例如eds：[ebx + some_offset]，但这并不是非常昂贵，因为处理器经过优化可以有效地处理这些指令。当然，如果你有想法做的事情：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function_ptr[thingie-&gt;method[arg3]](arg1,arg2);</span><br></pre></td></tr></table></figure>
+<p>由于需要大量操作来获取目标地址，因此成本会急剧增加。这可能很有用，但您不能抱怨性能损失。</p>
+</li>
+<li><p><strong>内联调用</strong>。内联功能没有通话费用。它们可能会扰乱代码的优化并产生负面影响，但会删除调用代码。然而，这并没有从评估论证中分配出来，而这些论证总是很昂贵。此外，编译器可能决定根本不内联函数，在这种情况下，它的行为与普通的直接调用完全相同。</p>
+</li>
+<li><p><strong>虚函数调用</strong>。虚函数只是间接调用，但指针存储在类的表中，而不是内存中的其他位置。下列：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">an_object-&gt;virtual_function(arg1,arg2);</span><br></pre></td></tr></table></figure>
+<p>将编译为类似于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">push arg2 </span><br><span class="line">push arg1</span><br><span class="line">// esi almost always contains THIS already</span><br><span class="line">mov edx,[esi+vmt_offset] // loads the vmt pointer (*)</span><br><span class="line">call [edx+method_offset*sizeof_ptr] // calls from memory location</span><br></pre></td></tr></table></figure>
+<p>其中vmt_offset是一个常量，在编译时确定。甚至可以使用this指针已经在寄存器中的事实，或者使用诸如lea之类的更复杂的指令（用于加载有效地址，由x86 CPU提供的“全部执行”地址计算指令）来进一步优化指令。此外，如果将VMT存储为对象的开头，则可以简化由（*）标记的行，就像使用G ++一样。</p>
+</li>
+</ul>
+<p>但是，无论是何种调用方法，调用成本都与参数有关。我们看到无论是C还是C++形式的间接调用，其本质上调用成本都很低。对虚拟方法的调用并不比使用struct成员（something-&gt; function（arg1，arg2））的间接调用更昂贵，因此将虚拟函数视为极其缓慢只是被误导。</p>
+<p>但是，在比较语言之间的表现时必须小心。人们必须准确理解不同语言中的程序究竟是什么，以及语义如何影响程序性能。当然，如果将语言A中的程序最小化翻译成语言B的实现的同时不能做同样的事情，那么对性能的任何结论都没有实际意义。</p>
+<h2 id="延申阅读"><a href="#延申阅读" class="headerlink" title="延申阅读"></a>延申阅读</h2><ul>
+<li>阅读有关<a href="http://en.wikipedia.org/wiki/Stack_(data_structure)" target="_blank" rel="noopener">栈</a>和<a href="http://en.wikipedia.org/wiki/Call_stack" target="_blank" rel="noopener">调用栈</a>的更多信息。</li>
+<li>阅读有关<a href="http://en.wikipedia.org/wiki/Inline_expansion" target="_blank" rel="noopener">内联扩展</a>的更多信息。</li>
+<li>阅读更多关于<a href="http://en.wikipedia.org/wiki/Object-oriented_programming" target="_blank" rel="noopener">面向对象</a>的编程。</li>
+<li>阅读<a href="http://www.cs.rit.edu/~ats/books/ooc.pdf" target="_blank" rel="noopener">Ansi C中如何进行面向对象的编程</a></li>
+</ul>
 
       
     </div>
@@ -417,6 +459,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-C/" rel="tag"># C/C++</a>
+          
+        </div>
       
 
       
@@ -502,6 +550,19 @@
               
 
               
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
             </nav>
           
 
@@ -540,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数调用方法"><span class="nav-number">1.</span> <span class="nav-text">函数调用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数调用的机制"><span class="nav-number">2.</span> <span class="nav-text">函数调用的机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数调用开销"><span class="nav-number">3.</span> <span class="nav-text">函数调用开销</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延申阅读"><span class="nav-number">4.</span> <span class="nav-text">延申阅读</span></a></li></ol></div>
             
 
           </div>
