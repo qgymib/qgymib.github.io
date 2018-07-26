@@ -79,7 +79,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:qgymib/qgymib.github.io.git
+  repo: git@git.coding.net:qgymib/qgymib.git
   branch: master
   name: qgymib
   email: qgymib@gmail.com
@@ -96,6 +96,7 @@ theme_config:
     unescape: true
   footer:
     since: 2018
+    custom_text: Hosted by <a target="_blank" rel="external nofollow" href="https://pages.coding.me"><b>Coding Pages</b></a>
 
 # RSS
 feed:
