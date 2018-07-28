@@ -93,10 +93,17 @@ theme_config:
     safari_pinned_tab: /favicon-512x512.svg
   local_search:
     enable: true
+    trigger: auto
+    top_n_per_article: 1
     unescape: true
   footer:
     since: 2018
     custom_text: Hosted by <a target="_blank" rel="external nofollow" href="https://pages.coding.me"><b>Coding Pages</b></a>
+  post_meta:
+    item_text: true
+    created_at: true
+    updated_at:
+      enabled: false
 
 # RSS
 feed:
