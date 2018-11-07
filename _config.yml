@@ -7,7 +7,7 @@ title: Wiki
 subtitle:
 description:
 keywords:
-author: Gaoyuan Qiu
+author: Q.GY
 language: zh-CN
 timezone: Asia/Shanghai
 
@@ -79,7 +79,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@git.coding.net:qgymib/qgymib.git
+  repo: git@git.dev.tencent.com:qgymib/qgymib.git
   branch: master
   name: qgymib
   email: qgymib@gmail.com
