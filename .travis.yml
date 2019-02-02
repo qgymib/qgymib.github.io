@@ -12,7 +12,6 @@ before_install:
 - git config --global user.email "qgymib@gmail.com"
 install:
 - npm install
-- git clone -b master git@git.dev.tencent.com:qgymib/qgymib.git .deploy_git
 script:
 - hexo clean
 - hexo generate
