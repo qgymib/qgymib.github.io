@@ -104,6 +104,8 @@ theme_config:
     created_at: true
     updated_at:
       enabled: false
+  lazyload: true
+  pangu: true
 
 # RSS
 feed:
