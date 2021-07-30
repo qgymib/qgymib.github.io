@@ -1,4 +1,4 @@
-name: github pages
+name: Hexo
 
 on:
   push:
@@ -10,10 +10,8 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
-  deploy:
+  Deploy-Hexo:
     runs-on: ubuntu-latest
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
         with:
