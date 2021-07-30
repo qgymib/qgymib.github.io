@@ -1,0 +1,11 @@
+local_search:
+  enable: true
+
+footer:
+  beian:
+    enable: true
+    icp: 浙ICP备2021005492号-1
+
+
+
+
