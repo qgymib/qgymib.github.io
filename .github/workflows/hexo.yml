@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master  # Set a branch to deploy
+      - 'feature/writer'  # Writer is allow to trigger deploy
   workflow_dispatch:
   repository_dispatch:
   schedule:
