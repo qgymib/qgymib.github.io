@@ -1,3 +1,5 @@
+scheme: Gemini
+
 menu:
   home: / || fa fa-home
   tags: /tags/ || fa fa-tags
@@ -5,14 +7,17 @@ menu:
   archives: /archives/ || fa fa-archive
   about: /about/ || fa fa-user
 
-local_search:
-  enable: true
+social:
+  GitHub: https://github.com/qgymib || fab fa-github
 
 footer:
+  since: 2021
   beian:
     enable: true
     icp: 浙ICP备2021005492号-1
 
+reading_progress:
+  enable: true
 
-
-
+local_search:
+  enable: true
