@@ -3,8 +3,7 @@ name: Hexo
 on:
   push:
     branches:
-      - master  # Set a branch to deploy
-      - 'feature/writer'  # Writer is allow to trigger deploy
+      - 'deploy'  # Set a branch to deploy
   workflow_dispatch:
   repository_dispatch:
   schedule:
