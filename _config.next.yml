@@ -1,5 +1,12 @@
 scheme: Gemini
 
+creative_commons:
+  license: by-nc-sa
+  size: small
+  sidebar: true
+  post: true
+  language:
+
 menu:
   home: / || fa fa-home
   tags: /tags/ || fa fa-tags
