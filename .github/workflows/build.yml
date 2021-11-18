@@ -9,6 +9,9 @@ on:
   schedule:
     - cron: '0 0 1 * *'
   workflow_call:
+    secrets:
+      KNOWLEDGE:
+        required: true
 
 jobs:
   Deploy-Hexo:
