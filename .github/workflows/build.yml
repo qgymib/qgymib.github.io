@@ -2,40 +2,19 @@ name: build
 
 on:
   push:
-    branches-ignore:
-      - 'gh-pages'
+    branches-ignore: [ master ]
   workflow_dispatch:
   repository_dispatch:
-  schedule:
-    - cron: '0 0 1 * *'
-  workflow_call:
-    secrets:
-      KNOWLEDGE:
-        required: true
 
 jobs:
   Deploy-Hexo:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout hexo framework
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          ref: 'master'
           submodules: 'recursive'
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-
-      - name: Checkout knowledge repo
-        uses: actions/checkout@v2
-        with:
-          ref: 'writer'
-          submodules: 'recursive'
-          path: 'deps/posts'
-          token: ${{ secrets.KNOWLEDGE }}
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-
-      - name: Setup posts
-        run: |
-          mv deps/posts/source/_posts source/_posts
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.3.0
@@ -45,9 +24,8 @@ jobs:
           npm install
           npx hexo generate
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          force_orphan: true
+          name: site_html
+          path: ./public
