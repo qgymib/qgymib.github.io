@@ -22,20 +22,11 @@ jobs:
           submodules: 'recursive'
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - name: Checkout knowledge repo
-        uses: actions/checkout@v3
-        with:
-          repository: 'qgymib/knowledge'
-          token: ${{ secrets.KNOWLEDGE }}
-          path: ./knowledge
-
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.3.0
 
       - name: Build
         run: |
-          rm -rf ./source/_posts/*
-          mv ./knowledge/* ./source/_posts/
           npm install
           npx hexo generate
 
