@@ -1,4 +1,5 @@
-scheme: Gemini
+scheme: Muse
+darkmode: true
 
 creative_commons:
   license: by-nc-sa
@@ -31,3 +32,6 @@ local_search:
 
 motion:
   enable: false
+
+mermaid:
+  enable: true
