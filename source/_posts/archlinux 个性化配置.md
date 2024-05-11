@@ -1,7 +1,7 @@
 ---
 title: archlinux 个性化配置
 date: 2022-04-22T09:31:53+08:00
-updated: 2023-07-10T20:38:28+08:00
+updated: 2024-05-11T15:33:35+08:00
 tags:
 ---
 
@@ -19,16 +19,31 @@ tags:
 
 [General recommendations](https://wiki.archlinux.org/title/General_recommendations)
 
-+ 添加用户
-+ 安装 Xorg / Xfce / lightdm
+> 注意：
+> 建议设置 `/etc/locale.conf` 时保持 `en_US.UTF-8`，用户语言可在 `~/.xprofile` 中设置。
+
+### 安装 KDE
+
+1. 安装 [KDE](https://wiki.archlinux.org/title/KDE)，去除 discover。
 
 ```
-# pacman -S xorg-server \
-    plasma-meta kde-system-meta kde-utilities-meta \
-    xfce4 xfce4-goodies alacarte \
-    lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+# pacman -S plasma konsole && pacman -Rs discover
+# systemctl enable sddm
+```
 
-# systemctl enable lightdm.service && systemctl start lightdm.service
+2. 设置 LANG
+
+在 `~/.xprofile` 中添加如下内容：
+
+```bash
+# Language
+export LANG=zh_CN.UTF-8
+```
+
+### 安装 Nerd 字体
+
+```
+# pacman -S ttf-noto-nerd
 ```
 
 ## AUR && archlinuxcn
@@ -49,6 +64,12 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 ## 中文化
 
 [Localization (简体中文)/Simplified Chinese (简体中文)](https://wiki.archlinux.org/title/Localization_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Simplified_Chinese_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
+
+1. 安装中文字体
+
+```
+# pacman -S noto-fonts-cjk
+```
 
 ## VMware 复制粘贴支持
 
