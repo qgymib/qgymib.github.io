@@ -46,6 +46,18 @@ export LANG=zh_CN.UTF-8
 # pacman -S ttf-noto-nerd
 ```
 
+### 安装 flatpak
+
+```bash
+sudo pacman -S flatpak
+sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
+```
+
+```bash
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak remote-modify --user flathub --url=https://mirror.sjtu.edu.cn/flathub
+```
+
 ## AUR && archlinuxcn
 
 [Arch Linux 中文社区仓库](https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/)
